@@ -85,18 +85,18 @@ bwa mem -R "@RG\\tID:${sample_id}\\tSM:${sample_id}\\tPL:illumina" -M -t ${threa
 
 echo "[INFO] samtools sort bam"
 echo "[INFO] command : samtools sort -@ ${threads} ${outdir}/${sample_id}/BAM/${sample_id}.bam -o ${outdir}/${sample_id}/BAM/${smaple_id}.sorted.bam"
-samtools sort -@ ${threads} ${outdir}/${sample_id}/BAM/${sample_id}.bam -o ${outdir}/${sample_id}/BAM/${smaple_id}.sorted.bam
+samtools sort -@ ${threads} ${outdir}/${sample_id}/BAM/${sample_id}.bam -o ${outdir}/${sample_id}/BAM/${sample_id}.sorted.bam
 
 
 
 echo "[INFO] deduplication"
-echo "[INFO] command : java8 -Xmx${mem_gb}g -jar /opt/data/picard-2.20.1/picard.jar MarkDuplicates REMOVE_SEQUENCING_DUPLICATES=true INPUT=${outdir}/${sample_id}/BAM/${smaple_id}.sorted.bam OUTPUT=${threads} ${outdir}/${sample_id}/BAM/${sample_id}.dedup.sorted.bam METRICS_FILE=${threads} ${outdir}/${sample_id}/BAM/${sample_id}.dedup.sorted.bam.metrics ASSUME_SORTED=true VALIDATION_STRINGENCY=SILENT"
+echo "[INFO] command : java8 -Xmx${mem_gb}g -jar /opt/data/picard-2.20.1/picard.jar MarkDuplicates REMOVE_SEQUENCING_DUPLICATES=true INPUT=${outdir}/${sample_id}/BAM/${sample_id}.sorted.bam OUTPUT=${outdir}/${sample_id}/BAM/${sample_id}.dedup.sorted.bam METRICS_FILE=${outdir}/${sample_id}/BAM/${sample_id}.dedup.sorted.bam.metrics ASSUME_SORTED=true VALIDATION_STRINGENCY=SILENT"
 java8 -Xmx${mem_gb}g \
       -jar /opt/data/picard-2.20.1/picard.jar \
       MarkDuplicates \
       REMOVE_SEQUENCING_DUPLICATES=true \
-      INPUT=${outdir}/${sample_id}/BAM/${smaple_id}.sorted.bam \
-      OUTPUT=${threads} ${outdir}/${sample_id}/BAM/${sample_id}.dedup.sorted.bam \
-      METRICS_FILE=${threads} ${outdir}/${sample_id}/BAM/${sample_id}.dedup.sorted.bam.metrics \
+      INPUT=${outdir}/${sample_id}/BAM/${sample_id}.sorted.bam \
+      OUTPUT=${outdir}/${sample_id}/BAM/${sample_id}.dedup.sorted.bam \
+      METRICS_FILE=${outdir}/${sample_id}/BAM/${sample_id}.dedup.sorted.bam.metrics \
       ASSUME_SORTED=true \
       VALIDATION_STRINGENCY=SILENT
