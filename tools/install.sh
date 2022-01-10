@@ -1,22 +1,17 @@
 #!/bin/bash
 # CentOS 7.6.1810
 
+err_msg() { echo "$@";} >&2
+
 usage() {
     err_msg \
 "Usage: $(basename "$0")
 Short options:          Description
         -s              Samtools install flag.
         -o              Install or download path.
+        -h              Usage
 "
 }
-
-err_msg() { echo "$@";} >&2
-
-# check option
-[ $# -eq 0 ] && echo -e \
-"None of option is inserted
-Try 'bash ./install.sh --help' for more information." && exit 0
-
 
 # Get option
 while getopts "o:sh" opt; do
@@ -36,6 +31,11 @@ while getopts "o:sh" opt; do
             ;;
     esac
 done
+
+# check option
+[ $# -eq 0 ] && echo -e \
+"None of option is inserted
+Try 'bash ./install.sh -h' for more information." && exit 0
 
 if  [[ $samtools -eq "install"  ]] && [[ -v outdir ]]; then
     yum install -y wget bzip2 gcc-c++ make ncurses-devel zlib-devel bzip2-devel xz-devel && \
