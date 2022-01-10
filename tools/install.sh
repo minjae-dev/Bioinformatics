@@ -9,7 +9,7 @@ usage() {
 Short options:          Description
         -s              Samtools install flag.
         -o              Install or download path.
-        -h              Usage
+        -h              Usage.
 "
 }
 
