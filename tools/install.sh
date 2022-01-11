@@ -37,6 +37,7 @@ done
 "None of option is inserted
 Try 'bash ./install.sh -h' for more information." && exit 0
 
+# Install samtools
 if  [[ $samtools -eq "install"  ]] && [[ -v outdir ]]; then
     yum install -y wget bzip2 gcc-c++ make ncurses-devel zlib-devel bzip2-devel xz-devel && \
     mkdir  && \
