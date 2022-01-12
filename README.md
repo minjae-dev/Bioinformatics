@@ -1,2 +1,2 @@
 # Bioinformatics
-study or information about Bioinformatics
+Study or information about Bioinformatics
