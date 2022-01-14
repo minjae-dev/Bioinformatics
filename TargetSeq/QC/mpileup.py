@@ -19,18 +19,8 @@ def log(msg):
 
 
 class MpileupPipeline:
-    def __init__(self, configs):
-        self.mpileup = Mpileup.from_configs(configs)
-
-    def run_sample(self, sample, directory_name = "MPILEUP", overwrite=False):
-        mpileup_file = self.__call__(
-            outdir = sample.outdir
-            , prefix = sample.prefix
-            , recal_bam = sample.recal_bam
-            , directory_name = directory_name
-            , overwrite = overwrite)
-
-        sample.mpileup_result = mpileup_file
+    def __init__(self, ref_hg, target_bed):
+        self.mpileup = Mpileup(ref_hg=ref_hg, target_bed=target_bed)
 
     def __call__(self, outdir, prefix, recal_bam, directory_name = "MPILEUP", overwrite = False):
         output_directory = os.path.join(outdir, directory_name)
